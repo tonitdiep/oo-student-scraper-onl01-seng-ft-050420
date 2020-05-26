@@ -1,3 +1,4 @@
+require 'pry'
 class Student
 
   attr_accessor :name, :location, :twitter, :linkedin, :github, :blog, :profile_quote, :bio, :profile_url 
@@ -11,9 +12,10 @@ class Student
 
   def self.create_from_collection(students_array)
     # scraper = Scraper.new
-    
-    Self.create_from_collection.each 
-    
+    # binding.pry
+    @@all.students_array.each do |name, location| 
+      puts "#{name}, #{location}" 
+    end
   end
 
   def add_student_attributes(attributes_hash)
