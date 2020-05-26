@@ -11,10 +11,8 @@ class Student
   end
 
   def self.create_from_collection(students_array)
-    # scraper = Scraper.new
-    # binding.pry
-    @@all.students_array.each do |name, location| 
-      puts "#{name}, #{location}" 
+      students_array.each do |student_hash| 
+      Student.new(student_hash) 
     end
   end
 
