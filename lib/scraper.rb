@@ -8,7 +8,7 @@ class Scraper
   def self.scrape_index_page(index_url)
     # binding.pry
     doc = Nokogiri::HTML(open("https://learn-co-curriculum.github.io/student-scraper-test-page/students/joe-burgess.html"))
-    index_url.each do |name, location, profile_url|
+    index_url.each do |student_hash|
       puts"#{name}, #{location}, #{profile_url}"
     end
   end
