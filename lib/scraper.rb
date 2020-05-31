@@ -6,13 +6,26 @@ class Scraper
   
   def self.scrape_index_page(index_url)
     index_doc = Nokogiri::HTML(open(index_url))
-    student_card = index_doc.css(".student_card")  
+    student_card = index_doc.css(".student-card")  
     students = []
-    index_doc.css("div.roster-cards-container").each do |card|
-      binding.pry
-       card.css(".student-card a").each do |student| 
-
-
+    
+    index_doc.css("div.roster-cards-container").each do  |card|
+    card.css(".student-card a").each do |student| 
+    binding.pry
+  # def self.scrape_index_page(index_url)
+  #   index_page = Nokogiri::HTML(open(index_url))
+  #   students = []
+  #   index_page.css("div.roster-cards-container").each do |card|
+  #     card.css(".student-card a").each do |student|
+  #       binding.pry
+  #       student_profile_link = "#{student.attr('href')}"
+  #       student_location = student.css('.student-location').text
+  #       student_name = student.css('.student-name').text
+  #       students << {name: student_name, location: student_location, profile_url: student_profile_link}
+  #     end
+  #   end
+  #   students
+  # end
 
     # scraped_students = Scraper.scrape_index_page(index_url)
     # scraped_students.location = scraped_students["location"]
@@ -23,7 +36,8 @@ class Scraper
     #   :name => card.css("h4").text, 
     #   :location => card.css("p").text, 
     #   :profile_url => card.css("a href").text }
-       end
+      
+      end
     end
   end
   
@@ -42,5 +56,6 @@ class Scraper
 
   def self.scrape_profile_page(profile_url)
   end
-  end
+end
+
 
