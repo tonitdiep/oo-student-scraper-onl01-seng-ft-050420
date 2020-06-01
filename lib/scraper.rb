@@ -3,58 +3,26 @@ require 'pry'
 require 'nokogiri' 
  
 class Scraper
-  
+ 
   def self.scrape_index_page(index_url)
-    index_doc = Nokogiri::HTML(open(index_url))
-    student_card = index_doc.css(".student-card")  
+    index_page = Nokogiri::HTML(open(index_url))
     students = []
-    
-    index_doc.css("div.roster-cards-container").each do  |card|
-    card.css(".student-card a").each do |student| 
-    binding.pry
-  # def self.scrape_index_page(index_url)
-  #   index_page = Nokogiri::HTML(open(index_url))
-  #   students = []
-  #   index_page.css("div.roster-cards-container").each do |card|
-  #     card.css(".student-card a").each do |student|
-  #       binding.pry
-  #       student_profile_link = "#{student.attr('href')}"
-  #       student_location = student.css('.student-location').text
-  #       student_name = student.css('.student-name').text
-  #       students << {name: student_name, location: student_location, profile_url: student_profile_link}
-  #     end
-  #   end
-  #   students
-  # end
-
-    # scraped_students = Scraper.scrape_index_page(index_url)
-    # scraped_students.location = scraped_students["location"]
-    # scraped_students.time = scraped_students["time"]
-        
-    # index_doc.css(".student_card").each do |card|   
-    # students << {
-    #   :name => card.css("h4").text, 
-    #   :location => card.css("p").text, 
-    #   :profile_url => card.css("a href").text }
-      
+    index_page.css("div.roster-cards-container").each do |card|
+      card.css(".student-card a").each do |student|
+        student_profile_link = "#{student.attr('href')}"
+        student_location = student.css('.student-location').text
+        student_name = student.css('.student-name').text
+        students << {name: student_name, location: student_location, profile_url: student_profile_link}
       end
     end
+    students
   end
-  
-  
-  # # <h1 class="profile-name">James Novak</h1>
-  #   <a href="students/james-novak.html">
-  #             <div class="view-profile-div">
-  #               <h3 class="view-profile-text">View Profile</h3>
-  #             </div>
-  #             <div class="card-text-container">
-  #               <h4 class="student-name">James Novak</h4>
-  #               <p class="student-location">New Jersey</p>
-  #             </div>
-  #           </a>
-     
 
   def self.scrape_profile_page(profile_url)
+  # binding.pry
+    profile_page = Nokogiri::HTML(open(profile_url))
+    profile_page.css
+    
   end
 end
 
