@@ -23,7 +23,7 @@ class Scraper
   
     student = {}
 
-    container = profile_page.css(".vitals-container .social-icon.contianer a").collect {|icon| icon.attr("href").value}
+    container = profile_page.css(".social-icon.contianer a").collect {|icon| icon.attr("href").value}
       container.each do |link|
         if link.include?("twitter")
             student[:twitter] = link
@@ -35,10 +35,11 @@ class Scraper
             student[:blog] = link
         end
       end
-      student[:profile_quote] = profile_page.css(".vital-containers .vitals-text-container .profile-quote").text 
-      student[:bio] = profile_page.css(".bio-block.details-block .bio-content.content-holder div.description-holder p").text 
+      student[:profile_quote] = profile_page.css(".profile-quote").text if profile_page.css(".profile-quote")
+      student[:bio] = profile_page.css("div.description-holder p").text if profile_page.css("div.description-holder p")
       student
     end
+
 
 end
 
