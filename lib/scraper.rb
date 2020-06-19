@@ -24,7 +24,6 @@ class Scraper
 
     container = profile_page.css(".social-icon-container").collect {|icon| icon.attr("href").value}
       container.each do |link|
-        # binding.pry
         if link.include?("twitter")
             student[:twitter] = link
         elsif link.include?("linkedin")
@@ -33,6 +32,7 @@ class Scraper
             student[:github] = link
         elsif link.include?(".com/")
             student[:blog] = link
+        binding.pry
         end
       end
       student[:profile_quote] = profile_page.css(".profile-quote").text if profile_page.css(".profile-quote")
