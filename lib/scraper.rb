@@ -23,7 +23,7 @@ class Scraper
     student = {}
 
     container = profile_page.css(".social-icon-container").collect {|icon| icon.attr("href").value}
- 
+  # binding.pry
       container.each do |link|
          binding.pry
         if link.include?("twitter")
